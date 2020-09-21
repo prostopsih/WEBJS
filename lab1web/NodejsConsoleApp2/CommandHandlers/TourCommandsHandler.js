@@ -43,12 +43,12 @@ commandsHandler['update_tour'] = () => {
         tour.country = country;
         const price = readlineSync.question('Enter tour price: ');
         const numPrice = Number(price);
-        if (numPrice != NaN) {
+        if (numPrice.toString() != 'NaN' && numPrice.toFixed() > 0) {
             tour.price = numPrice;
             const maxTouristsCount = readlineSync.question('Enter tour maxTouristsCount: ');
             const numMaxTouristsCount = Number(maxTouristsCount);
-            if (numMaxTouristsCount != NaN) {
-                tour.maxTouristsCount = numMaxTouristsCount;
+            if (numMaxTouristsCount.toString() != 'NaN' && numMaxTouristsCount.toFixed() > 0) {
+                tour.maxTouristsCount = numMaxTouristsCount.toFixed();
                 const startDate = readlineSync.question('Enter tour startDate: ');
                 try {
                     const dateStartDate = new Date(startDate);
@@ -85,12 +85,12 @@ commandsHandler['post_tour'] = () => {
     tour.country = country;
     const price = readlineSync.question('Enter tour price: ');
     const numPrice = Number(price);
-    if (numPrice != NaN) {
+    if (numPrice.toString() != 'NaN' && numPrice.toFixed() > 0) {
         tour.price = numPrice;
         const maxTouristsCount = readlineSync.question('Enter tour maxTouristsCount: ');
         const numMaxTouristsCount = Number(maxTouristsCount);
-        if (numMaxTouristsCount != NaN) {
-            tour.maxTouristsCount = numMaxTouristsCount;
+        if (numMaxTouristsCount.toString() != 'NaN' && numMaxTouristsCount.toFixed() > 0) {
+            tour.maxTouristsCount = numMaxTouristsCount.toFixed();
             const startDate = readlineSync.question('Enter tour startDate: ');
             try {
                 const dateStartDate = new Date(startDate);
