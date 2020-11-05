@@ -35,6 +35,9 @@
     <Content Include="CommandHandlers\TourCommandsHandler.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="CommandHandlers\TryHandler.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="CommandHandlers\UserCommandsHandler.js">
       <SubType>Code</SubType>
     </Content>
@@ -52,6 +55,9 @@
     </Content>
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="Repositories\EntityRepository.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Repositories\JsonStorage.js">
       <SubType>Code</SubType>
     </Content>

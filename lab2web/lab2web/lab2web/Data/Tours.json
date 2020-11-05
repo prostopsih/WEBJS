@@ -1,0 +1,181 @@
+{
+    "nextId": 32,
+    "items": [
+        {
+            "id": 6,
+            "name": "dasasdfas",
+            "country": "awswq",
+            "price": 123123,
+            "maxTouristsCount": 3425,
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 8,
+            "name": "qq",
+            "country": "ww",
+            "price": 11,
+            "maxTouristsCount": "11",
+            "startDate": "1995-12-17T00:00:00.000Z"
+        },
+        {
+            "id": 12,
+            "name": null,
+            "country": null,
+            "price": null,
+            "maxTouristsCount": null,
+            "startDate": null
+        },
+        {
+            "id": 13,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 14,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 15,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 16,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 17,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 18,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 19,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 20,
+            "name": "gg",
+            "country": "gg",
+            "price": "123123",
+            "maxTouristsCount": "3425",
+            "startDate": "1995-12-17T01:24:00.000Z"
+        },
+        {
+            "id": 21,
+            "name": null,
+            "country": null,
+            "price": null,
+            "maxTouristsCount": null,
+            "startDate": null
+        },
+        {
+            "id": 23,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 22,
+            "name": "GG",
+            "country": "GG",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 11,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 24,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 25,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 26,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 27,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 28,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 29,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        },
+        {
+            "id": 30,
+            "name": "string",
+            "country": "string",
+            "price": "Unknown Type: int",
+            "maxTouristsCount": "Unknown Type: int",
+            "startDate": "Unknown Type: date"
+        }
+    ]
+}

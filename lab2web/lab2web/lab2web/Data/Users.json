@@ -1,0 +1,15 @@
+{
+  "nextId": 3,
+  "items": [
+    {
+      "id": 1,
+      "login": "admin",
+      "fullname": "Admin Admin"
+    },
+    {
+      "id": 2,
+      "login": "testUser",
+      "fullname": "Test User"
+    }
+  ]
+}

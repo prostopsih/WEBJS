@@ -2,7 +2,7 @@
 
 const readlineSync = require('readline-sync')
 const UserCommandsHandler = require('./CommandHandlers/UserCommandsHandler')
-const TourCommandsHandler = require('./CommandHandlers/TourCommandsHandler')
+const TourCommandsHandler = require('./CommandHandlers/TryHandler')
 
 
 while (true) {
