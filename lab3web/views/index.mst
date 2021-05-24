@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  {{>head}}
+  <body>
+    {{>header}}
+    <div class="home_page">
+    <h1>Travel gid</h1>
+    <p class="home_text">Travel with us</p>
+    <div class="home_images">
+    <img src="/images/home_pic.jpg" alt="*home img"/>
+    </div>
+    </div>
+    {{>footer}}
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  {{>head}}
+  <body>
+    {{>header}}
+    <form action="/tours/" method="POST" enctype="multipart/form-data" class="add_tour">
+    <div class="main_inputs">
+    Name:<br>
+    <input type="text" name="name" required><br>
+    Country:<br>
+    <input type="text" name="country" required><br>
+    Price:<br>
+    <input type="number" name="price" min=0 required><br>
+    Max tourists:<br>
+    <input type="number" name="maxTouristsCount" min=1 required><br>
+    Start date:<br>
+    <input class="date" type="date" name="startDate" max=2030 min=0 required><br>
+    <input class="photo" type="file" name="photo" value="Add file"><br>
+    </div>
+    <div class="add_tour_button">
+    <input class="button create" type="submit" value="Create">
+    </div>
+    </form>
+    {{>footer}}
+  </body>
+</html>

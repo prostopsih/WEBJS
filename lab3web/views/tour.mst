@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  {{>head}}
+  <body>
+    {{>header}}
+    <div class="tour_inf">
+    <div class="tour_img">
+    <img class="tour_images" src="{{tour.media.path}}" alt="*Tour picture">
+    </div>
+    <div class="info">
+    <h1>Tour</h1>
+    <div class="add">
+    <p>Name:<br>
+    <em>{{tour.name}}</em></p>
+    <p>Country:<br>
+    <em>{{tour.country}}</em></p>
+    <p>Price:<br>
+    <em>{{tour.price}}</em></p>
+    <p>Max tourists:<br>
+    <em>{{tour.maxTouristsCount}}</em></p>
+    <p>Start date:<br>
+    <em>{{tour.startDate}}</em></p>
+    </div>
+    </div>
+    </div>
+    <form action="/tours/{{tour.id}}" method="POST" >
+    <input class="button delete" type="submit" value="Delete">
+    </form>
+    {{>footer}}
+  </body>
+</html>

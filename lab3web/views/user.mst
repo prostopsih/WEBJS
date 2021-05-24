@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  {{>head}}
+  <body>
+    {{>header}}
+    <h1>User</h1>
+    <div class="user">
+    <div class="user_img">
+    <img class="user_images" src="{{user.media.path}}" alt="User picture">
+    </div>
+    <div class="user_info">
+    <p>{{user.fullname}}</p>
+    <p>({{user.login}}) {{user.registeredAt}}</p>
+    <p class="Bio"> {{user.Bio}}</p>
+    </div>
+    </div>
+    {{>footer}}
+  </body>
+</html>

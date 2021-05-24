@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  {{>head}}
+  <body>
+    {{>header}}
+    <h1>About</h1>
+    <p><b>Name</b>: Klimchuk Nikita</p>
+    <p><b>E-mail</b>: klimchuk_nik@gmail.com</p>
+    <p><b>About</b>: You can use our site for searching, adding and deleting tours</p>
+    {{>footer}}
+  </body>
+</html>

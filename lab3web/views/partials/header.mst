@@ -1,0 +1,15 @@
+<div class="header">
+  <img class="logo" src="/images/logo1.png" alt="logo"> 
+  <div class="menu">
+    <nav>
+    <ul>
+    <li> <a href="/" class="{{home_link}}" class="{{index_current}}" > Home </a></li>
+    <li> <a href="/users" class="{{user_link}}" class="{{user_current}}"> Users </a></li>
+    <li> <a href="/tours" class="{{tour_link}}" class="{{tour_current}}"> Tours </a></li>
+    <li> <a href="/about" class="{{about_link}}" class="{{about_current}}"> About </a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+<hr>
+    

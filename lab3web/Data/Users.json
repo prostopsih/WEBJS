@@ -1,0 +1,23 @@
+{
+  "nextId": 3,
+  "items": [
+    {
+      "id": 1,
+      "login": "admin",
+      "fullname": "Admin Admin",
+      "Bio": "Bio1",
+      "media": {
+        "path": "/Media/0.jpg"
+      }
+    },
+    {
+      "id": 2,
+      "login": "testUser",
+      "fullname": "Test User",
+      "Bio": "Bio2",
+      "media": {
+        "path": "/Media/0.jpg"
+      }
+    }
+  ]
+}
