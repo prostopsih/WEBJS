@@ -1,28 +1,49 @@
-﻿ const protocol = location.protocol === "https:" ? "wss:" : "ws:";
- const wsLocation = `${protocol}//${location.host}`;
-const connection = new WebSocket("wss://localhost:44317/chatHub");
-/*var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();*/
+﻿const protocol = location.protocol === "https:" ? "wss:" : "ws:";
+const wsLocation = `${protocol}//${location.host}`;
 
 let userName = "owner1";
 let rooms = [];
 let currentRoomName = null;
 let members = [];
 let messages = [];
+var localToken;
 
-const isTestMode = true;
+const isTestMode = false;
 let testPostingInterval = null;
 
 function storeToken(token) {
-	localStorage.setItem("token", token);
+	localToken = token;
+	//localStorage.setItem("token", token);
 }
 
 function getToken() {
-	return localStorage.getItem("token");
+	return localToken;
+	//return localStorage.getItem("token");
 }
 
-connection.addEventListener("open", () => setStatus(true));
-connection.addEventListener("close", () => setStatus(false));
-connection.addEventListener("error", () => console.log(`Connection error`));
+const connection = new signalR.HubConnectionBuilder()
+	.withUrl("../../chatHub")
+	.configureLogging(signalR.LogLevel.Information)
+	.build();
+
+async function start() {
+	try {
+		await connection.start();
+		setStatus(true);
+		console.log("SignalR Connected.");
+	} catch (err) {
+		console.log(err);
+		setTimeout(start, 5000);
+	}
+};
+
+connection.onclose(() => setStatus(false));
+connection.onclose(start);
+/*connection.onclose(start);*/
+
+start();
+
+
 
 class AppMessage {
 	constructor(token, type = "undefined", payload = null) {
@@ -72,9 +93,8 @@ const MessageTypes = {
 	SERVER_MESSAGE_POSTED: "MessagePosted",
 };
 
-function sendMessage(appMessage) {
-	connection.send(JSON.stringify(appMessage));
-
+async function sendMessage(appMessage) {
+	await connection.invoke(appMessage.type, appMessage.token, appMessage.payload);
 	if (isTestMode) {
 		console.log("SENT:", appMessage);
 	}
@@ -224,7 +244,7 @@ function showError(error) {
 function setJoinedRoom(room) {
 	currentRoomName = room.name;
 	const currentRoomEl = document.getElementById("current-room");
-	if (!room) {
+	if (currentRoomName === "") {
 		hide(currentRoomEl);
 		return;
 	}
@@ -517,76 +537,121 @@ function validateString(value) {
 	}
 }
 
-connection.addEventListener("message", (message) => {
-	const jsonText = message.data;
-	try {
-		const messageObject = JSON.parse(jsonText);
-		Object.setPrototypeOf(messageObject, AppMessage);
-
-		switch (messageObject.type) {
-			case MessageTypes.SERVER_TOKEN: {
-				const token = messageObject.payload;
-				validateString(token);
-				onToken(token);
-				break;
-			}
-			case MessageTypes.SERVER_ROOMS_LIST: {
-				const roomsList = messageObject.payload;
-				onRoomsList(roomsList);
-				break;
-			}
-			case MessageTypes.SERVER_ROOM_CREATED: {
-				const room = messageObject.payload;
-				onRoomCreated(room);
-				break;
-			}
-			case MessageTypes.SERVER_ROOM_RENAMED: {
-				const { oldRoomName, newRoomName } = messageObject.payload;
-				onRoomRenamed(oldRoomName, newRoomName);
-				break;
-			}
-			case MessageTypes.SERVER_ROOM_REMOVED: {
-				const room = messageObject.payload;
-				onRoomRemoved(room);
-				break;
-			}
-			case MessageTypes.SERVER_CURRENT_ROOM_CHANGED: {
-				const room = messageObject.payload;
-				onCurrentRoomChanged(room);
-				break;
-			}
-			case MessageTypes.SERVER_MEMBER_JOINED: {
-				const memberName = messageObject.payload;
-				onMemberJoined(memberName);
-				break;
-			}
-			case MessageTypes.SERVER_MEMBER_LEFT: {
-				const memberName = messageObject.payload;
-				onMemberLeft(memberName);
-				break;
-			}
-			case MessageTypes.SERVER_LAST_MESSAGES_LIST: {
-				const lastMessages = messageObject.payload;
-				onLastMessagesList(lastMessages);
-				break;
-			}
-			case MessageTypes.SERVER_MEMBERS_LIST: {
-				const members = messageObject.payload;
-				onMembersList(members);
-				break;
-			}
-			case MessageTypes.SERVER_MESSAGE_POSTED: {
-				const chatMessage = messageObject.payload;
-				onMessagePosted(chatMessage);
-				break;
-			}
-			default:
-				throw new Error("Not supported message type: " + messageObject.type);
-		}
-	} catch (err) {
-		showError(err);
-	}
+connection.on(MessageTypes.SERVER_TOKEN, (user, message) => {
+	validateString(message);
+	onToken(message);
 });
+
+connection.on(MessageTypes.SERVER_ROOMS_LIST, (user, message) => {
+	onRoomsList(message);
+});
+
+connection.on(MessageTypes.SERVER_ROOM_CREATED, (user, message) => {
+	onRoomCreated(message);
+});
+
+connection.on(MessageTypes.SERVER_ROOM_RENAMED, (user, message) => {
+	const { oldRoomName, newRoomName } = message;
+	onRoomRenamed(oldRoomName, newRoomName);
+});
+
+connection.on(MessageTypes.SERVER_ROOM_REMOVED, (user, message) => {
+	onRoomRemoved(message);
+});
+
+connection.on(MessageTypes.SERVER_CURRENT_ROOM_CHANGED, (user, message) => {
+	onCurrentRoomChanged(message);
+});
+
+connection.on(MessageTypes.SERVER_MEMBER_JOINED, (user, message) => {
+	onMemberJoined(message);
+});
+
+connection.on(MessageTypes.SERVER_MEMBER_LEFT, (user, message) => {
+	onMemberLeft(message);
+});
+
+connection.on(MessageTypes.SERVER_LAST_MESSAGES_LIST, (user, message) => {
+	onLastMessagesList(message);
+});
+
+connection.on(MessageTypes.SERVER_MEMBERS_LIST, (user, message) => {
+	onMembersList(message);
+});
+
+connection.on(MessageTypes.SERVER_MESSAGE_POSTED, (user, message) => {
+	onMessagePosted(message);
+});
+//connection.addEventListener("message", (message) => {
+//	const jsonText = message.data;
+//	try {
+//		const messageObject = JSON.parse(jsonText);
+//		Object.setPrototypeOf(messageObject, AppMessage);
+
+//		switch (messageObject.type) {
+//			case MessageTypes.SERVER_TOKEN: {
+//				const token = messageObject.payload;
+//				validateString(token);
+//				onToken(token);
+//				break;
+//			}
+//			case MessageTypes.SERVER_ROOMS_LIST: {
+//				const roomsList = messageObject.payload;
+//				onRoomsList(roomsList);
+//				break;
+//			}
+//			case MessageTypes.SERVER_ROOM_CREATED: {
+//				const room = messageObject.payload;
+//				onRoomCreated(room);
+//				break;
+//			}
+//			case MessageTypes.SERVER_ROOM_RENAMED: {
+//				const { oldRoomName, newRoomName } = messageObject.payload;
+//				onRoomRenamed(oldRoomName, newRoomName);
+//				break;
+//			}
+//			case MessageTypes.SERVER_ROOM_REMOVED: {
+//				const room = messageObject.payload;
+//				onRoomRemoved(room);
+//				break;
+//			}
+//			case MessageTypes.SERVER_CURRENT_ROOM_CHANGED: {
+//				const room = messageObject.payload;
+//				onCurrentRoomChanged(room);
+//				break;
+//			}
+//			case MessageTypes.SERVER_MEMBER_JOINED: {
+//				const memberName = messageObject.payload;
+//				onMemberJoined(memberName);
+//				break;
+//			}
+//			case MessageTypes.SERVER_MEMBER_LEFT: {
+//				const memberName = messageObject.payload;
+//				onMemberLeft(memberName);
+//				break;
+//			}
+//			case MessageTypes.SERVER_LAST_MESSAGES_LIST: {
+//				const lastMessages = messageObject.payload;
+//				onLastMessagesList(lastMessages);
+//				break;
+//			}
+//			case MessageTypes.SERVER_MEMBERS_LIST: {
+//				const members = messageObject.payload;
+//				onMembersList(members);
+//				break;
+//			}
+//			case MessageTypes.SERVER_MESSAGE_POSTED: {
+//				const chatMessage = messageObject.payload;
+//				onMessagePosted(chatMessage);
+//				break;
+//			}
+//			default:
+//				throw new Error("Not supported message type: " + messageObject.type);
+//		}
+//	} catch (err) {
+//		showError(err);
+//	}
+//});
 
 // actions
 

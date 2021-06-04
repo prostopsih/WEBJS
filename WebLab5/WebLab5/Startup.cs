@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebLab5.Hubs;
+using WebLab5.Services;
 
 namespace WebLab5
 {
@@ -31,6 +32,8 @@ namespace WebLab5
         {
             services.AddRazorPages();
             services.AddSignalR();
+            services.AddScoped<ChatService>();
+            services.AddScoped<AccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
